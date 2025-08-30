@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfqbhyskjayvj"]
+
+[ext_resource type="PackedScene" uid="uid://c7ugrhmaqpyb3" path="res://Scenes/palli.tscn" id="1_ebmjs"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, -313)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_ebmjs")
+
+[node name="Palli" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(-430, -31)
+scale = Vector2(0.415, 0.415)

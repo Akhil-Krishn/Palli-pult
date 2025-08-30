@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7ugrhmaqpyb3"]
+
+[ext_resource type="Script" uid="uid://ctg1woxodqgt0" path="res://Scripts/palli.gd" id="1_n8vao"]
+[ext_resource type="Texture2D" uid="uid://cniq67v7opgva" path="res://icon.svg" id="2_54kwy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54kwy"]
+radius = 157.0
+height = 336.0
+
+[node name="Palli" type="CharacterBody2D"]
+script = ExtResource("1_n8vao")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_54kwy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 4.76837e-07)
+scale = Vector2(2.33333, 2.27344)
+texture = ExtResource("2_54kwy")
