@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfqbhyskjayvj"]
+[gd_scene load_steps=4 format=3 uid="uid://cfqbhyskjayvj"]
 
 [ext_resource type="PackedScene" uid="uid://c7ugrhmaqpyb3" path="res://Scenes/palli.tscn" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.085, 0.864)
+editor_draw_limits = true
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(0, -313)
@@ -16,5 +19,11 @@ rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
 [node name="Palli" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(-430, -31)
+position = Vector2(-554, -319)
 scale = Vector2(0.415, 0.415)
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(-1, 1)
+scale = Vector2(0.551216, 0.517313)
+texture = ExtResource("2_qxrlw")

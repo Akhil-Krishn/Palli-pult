@@ -14,3 +14,8 @@ config/name="Palli-Pult"
 run/main_scene="uid://cfqbhyskjayvj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
