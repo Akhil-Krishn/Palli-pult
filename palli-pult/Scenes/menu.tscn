@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://be6cf0djjivg2"]
+[gd_scene load_steps=14 format=3 uid="uid://be6cf0djjivg2"]
 
 [ext_resource type="Texture2D" uid="uid://1foj36mntt78" path="res://assets/menubg.png" id="1_wbdvm"]
 [ext_resource type="Script" uid="uid://c0xfsf1vbiw5m" path="res://Scripts/menubg.gd" id="2_6swd7"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://sq52nq0vro3w" path="res://Scripts/title.gd" id="6_5ti5v"]
 [ext_resource type="Texture2D" uid="uid://brjqje3ubdgkp" path="res://assets/options.png" id="6_g8i7c"]
 [ext_resource type="Texture2D" uid="uid://dgbguh3hb38mw" path="res://assets/particle.png" id="7_23t3j"]
+[ext_resource type="Script" uid="uid://bvvh1y3dyka0f" path="res://Scripts/play.gd" id="10_g8i7c"]
+[ext_resource type="Script" uid="uid://jiiy0l5oyi2s" path="res://Scripts/how_to.gd" id="12_23t3j"]
 [ext_resource type="Script" uid="uid://dp43m4t01cx4p" path="res://Scripts/particle.gd" id="14_dldpb"]
 
 [node name="menu" type="Control"]
@@ -67,13 +69,21 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
 icon = ExtResource("4_7qvly")
+flat = true
+script = ExtResource("10_g8i7c")
 
 [node name="how to" type="Button" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 icon = ExtResource("5_rfqti")
+flat = true
+script = ExtResource("12_23t3j")
 
 [node name="options" type="Button" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 icon = ExtResource("6_g8i7c")
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/play" to="VBoxContainer/play" method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/how to" to="VBoxContainer/how to" method="_on_pressed"]
