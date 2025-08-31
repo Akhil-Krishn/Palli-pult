@@ -4,18 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://i4152b7ktehn" path="res://assets/lizard.png" id="2_54kwy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54kwy"]
-radius = 157.0
-height = 336.0
+radius = 107.0
+height = 214.0
 
 [node name="Palli" type="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(0.38, 0.38)
 script = ExtResource("1_n8vao")
+turn_point = Vector2(250, -250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_54kwy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, 4.76837e-07)
-scale = Vector2(2.33333, 2.27344)
+position = Vector2(12, -19)
+scale = Vector2(1.86255, 1.88379)
 texture = ExtResource("2_54kwy")
 hframes = 8
 vframes = 2

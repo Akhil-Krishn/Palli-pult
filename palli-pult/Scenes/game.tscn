@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfqbhyskjayvj"]
 
-[ext_resource type="PackedScene" uid="uid://c7ugrhmaqpyb3" path="res://Scenes/palli.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://crscaed02a1ha" path="res://Scripts/spawn.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
@@ -10,6 +10,7 @@ script/source = "extends Sprite2D
 "
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_qxrlw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -2)
@@ -22,13 +23,34 @@ rotation = 3.14159
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
-[node name="Palli" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(106, 35)
-scale = Vector2(0.415, 0.415)
-
 [node name="bg" type="Sprite2D" parent="."]
 z_index = -20
 texture_filter = 1
 scale = Vector2(0.5, 0.449)
 texture = ExtResource("2_qxrlw")
 script = SubResource("GDScript_qxrlw")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-474, -277)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = 485.0
+offset_top = -360.0
+offset_right = 591.0
+offset_bottom = 332.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 1
+offset_left = -591.0
+offset_top = -347.0
+offset_right = -485.0
+offset_bottom = 345.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
