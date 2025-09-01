@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfqbhyskjayvj"]
+[gd_scene load_steps=7 format=3 uid="uid://cfqbhyskjayvj"]
 
 [ext_resource type="Script" uid="uid://crscaed02a1ha" path="res://Scripts/spawn.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://0ess6w8y6nnh" path="res://Scenes/player.tscn" id="3_wrm1d"]
+[ext_resource type="PackedScene" uid="uid://blsrel7hrrrgx" path="res://Scenes/projectile.tscn" id="4_3dryh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
@@ -13,7 +15,6 @@ script/source = "extends Sprite2D
 script = ExtResource("1_qxrlw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -2)
 editor_draw_limits = true
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -52,5 +53,24 @@ offset_top = -347.0
 offset_right = -485.0
 offset_bottom = 345.0
 color = Color(0, 0, 0, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_wrm1d")]
+position = Vector2(0, 224)
+ProjectileScene = ExtResource("4_3dryh")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PowerSlider" type="HSlider" parent="UI"]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 270.0
+offset_right = 858.0
+offset_bottom = 349.0
+rotation = -1.5708
+editable = false
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
