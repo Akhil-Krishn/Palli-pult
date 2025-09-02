@@ -1,29 +1,21 @@
-extends Area2D
+extends Node2D
 
-
-# The projectile's initial velocity
 var speed: float = 0.0
+@onready var area: Area2D = $Area2D
 
-# The projectile's direction
-var direction: Vector2 = Vector2.UP
+signal hit_lizard(lizard)
 
-# This function is called by the Player script to set the initial velocity
-func set_launch_speed(s: float):
-	speed = s
+func set_launch_speed(launch_speed: float):
+	speed = launch_speed
 
+func _ready():
+	area.connect("area_entered", Callable(self, "_on_area_entered"))
 
-func _physics_process(delta: float):
+func _physics_process(delta):
+	# move upward
+	position.y -= speed * delta
 
-	# Move the projectile up
-	position += speed * delta * direction
-	
-	
-	# Removing the projectile if it passes over the screen
-	if position.y > get_viewport_rect().size.y:
+func _on_area_entered(other_area: Area2D):
+	if other_area.get_parent().is_in_group("lizard"):
+		emit_signal("hit_lizard", other_area.get_parent())
 		queue_free()
-
-
-
-# This is triggered when the projectile's area overlaps with a physics body
-func _on_body_entered(body: Node2D):
-	queue_free() # Destroy the projectile

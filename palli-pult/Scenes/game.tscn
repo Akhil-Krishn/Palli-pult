@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cfqbhyskjayvj"]
+[gd_scene load_steps=8 format=3 uid="uid://cfqbhyskjayvj"]
 
 [ext_resource type="Script" uid="uid://crscaed02a1ha" path="res://Scripts/spawn.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://c7ugrhmaqpyb3" path="res://Scenes/palli.tscn" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://0ess6w8y6nnh" path="res://Scenes/player.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://blsrel7hrrrgx" path="res://Scenes/projectile.tscn" id="4_3dryh"]
 
@@ -13,6 +14,7 @@ script/source = "extends Sprite2D
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qxrlw")
+palli_scene = ExtResource("2_wowpa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true
