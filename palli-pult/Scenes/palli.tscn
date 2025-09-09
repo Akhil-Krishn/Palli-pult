@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7ugrhmaqpyb3"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ugrhmaqpyb3"]
 
 [ext_resource type="Script" uid="uid://ctg1woxodqgt0" path="res://Scripts/palli.gd" id="1_n8vao"]
 [ext_resource type="Texture2D" uid="uid://i4152b7ktehn" path="res://assets/lizard.png" id="2_54kwy"]
+[ext_resource type="PackedScene" uid="uid://dtghlvdv4n0pf" path="res://Scenes/blood_splash.tscn" id="2_jtc44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_54kwy"]
-radius = 76.3158
-height = 389.474
+radius = 68.4211
+height = 268.421
 
 [node name="Palli" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(0.38, 0.38)
 script = ExtResource("1_n8vao")
+blood_scn = ExtResource("2_jtc44")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(12, -19)
@@ -23,6 +25,6 @@ frame = 8
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(15.7895, 4.26326e-14)
+position = Vector2(-1.0884e-24, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_54kwy")

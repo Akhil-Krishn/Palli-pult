@@ -2,6 +2,13 @@ extends Node2D
 
 @export var ProjectileScene : PackedScene
 @export var projectile_speed: float = 100.0
+@export var t_projectile_speed: float = 28.0
+@export var b_projectile_speed: float = 5.0
+
+var top_speed_projectile
+var bottom_speed_projectile
+
+@onready var anim = $AnimatedSprite2D
 
 var slider_increase: bool = true
 @onready var power_slider: HSlider = $"../UI/PowerSlider"
@@ -9,24 +16,33 @@ var is_aiming = false
 
 func _ready():
 	power_slider.hide()
+	top_speed_projectile = t_projectile_speed * projectile_speed
+	bottom_speed_projectile = b_projectile_speed * projectile_speed
 
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot"):
 		is_aiming = true
+		anim.play("aim")
 		power_slider.show()
 
 	if event.is_action_released("shoot") and is_aiming:
 		is_aiming = false
+		anim.play("shoot")
 		power_slider.hide()
 
 		var launch_speed = power_slider.value * projectile_speed
-		power_slider.value = 0
+		
+		if launch_speed>top_speed_projectile:
+			launch_speed = top_speed_projectile
+		if launch_speed<bottom_speed_projectile:
+			launch_speed = bottom_speed_projectile
+
 
 		var new_projectile = ProjectileScene.instantiate()
 		get_tree().get_root().add_child(new_projectile)
 		new_projectile.global_position = self.global_position
-		new_projectile.set_launch_speed(launch_speed)
-
+		new_projectile.set_launch_speed(launch_speed, power_slider.value)
+		power_slider.value = 0
 		new_projectile.connect("hit_lizard", Callable(self, "_on_lizard_hit"))
 
 func _physics_process(delta):
@@ -53,3 +69,7 @@ func _on_lizard_hit(lizard):
 			if lizard.global_position.distance_to(other.global_position) < radius:
 				var run_right = randi() % 2 == 0
 				other.panic_run(run_right)
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	anim.play("default")

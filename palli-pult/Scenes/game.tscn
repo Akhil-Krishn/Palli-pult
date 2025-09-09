@@ -1,16 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfqbhyskjayvj"]
+[gd_scene load_steps=11 format=3 uid="uid://cfqbhyskjayvj"]
 
 [ext_resource type="Script" uid="uid://crscaed02a1ha" path="res://Scripts/spawn.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://c7ugrhmaqpyb3" path="res://Scenes/palli.tscn" id="2_wowpa"]
 [ext_resource type="PackedScene" uid="uid://0ess6w8y6nnh" path="res://Scenes/player.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://blsrel7hrrrgx" path="res://Scenes/projectile.tscn" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://ru2wixxsppys" path="res://Scripts/score.gd" id="6_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bhqtbh31jgm8" path="res://Scenes/sambar.tscn" id="6_i6g32"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
 [sub_resource type="GDScript" id="GDScript_qxrlw"]
 script/source = "extends Sprite2D
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_wowpa"]
+line_spacing = 5.17
+paragraph_spacing = 1.15
+font_size = 55
+outline_size = 10
+outline_color = Color(0.670296, 0.698532, 0.886749, 1)
+shadow_size = 8
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qxrlw")
@@ -75,4 +85,24 @@ offset_bottom = 349.0
 rotation = -1.5708
 editable = false
 
+[node name="Score" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = -474.0
+offset_top = 224.0
+offset_right = -218.0
+offset_bottom = 300.0
+text = "Score"
+label_settings = SubResource("LabelSettings_wowpa")
+script = ExtResource("6_1l0tm")
+
+[node name="Sambar" parent="." instance=ExtResource("6_i6g32")]
+position = Vector2(-306, -13)
+scale = Vector2(0.43, 0.43)
+
+[node name="Sambar2" parent="." instance=ExtResource("6_i6g32")]
+position = Vector2(-63.9999, -13)
+scale = Vector2(0.43, 0.43)
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="score_1" from="Sambar" to="UI/Score" method="_on_sambar_score_1"]
+[connection signal="score_1" from="Sambar2" to="UI/Score" method="_on_sambar_score_1"]

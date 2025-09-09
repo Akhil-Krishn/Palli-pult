@@ -1,5 +1,11 @@
 extends Node2D
 
+var blood_sprayed:bool = false
+var zoom_rate:float = 1.0
+@export var z_rate: float = 1
+@export var scale_max: float = 0.275
+@export var blood_scn: PackedScene
+
 @onready var sprite: Sprite2D = $Sprite2D
 var speed: float = 180.0
 var direction: Vector2 = Vector2.RIGHT
@@ -21,6 +27,9 @@ var panic_hold_flip: bool = false   # flip state for hold frame
 
 @export var turn_point: Vector2 = Vector2(300, 0)
 @export var turn_slope: float = 0.20
+
+func set_zoom_rate(slider_val:float):
+	zoom_rate = slider_val
 
 func _ready():
 	viewport_width = get_viewport_rect().size.x
@@ -51,17 +60,39 @@ func _walk_normal(delta):
 	if position.x > viewport_width:
 		queue_free()
 
+
+func fade_out(obj:Node2D,duration:float):
+	var tween = create_tween()
+	tween.tween_property(obj, "modulate:a", 0.0, duration)
+	await tween.finished
+	queue_free()
+
+
 func _fall_down(delta):
-	position.y += fall_speed * delta
 	sprite.frame = 0
+	if self.scale.x < scale_max:
+		fade_out(self,0.5)
+		if not blood_sprayed:
+			var blood = blood_scn.instantiate()
+			blood.position = self.global_position
+			self.get_parent().add_child(blood)
+			blood_sprayed = true
+		return
 	if position.y > get_viewport_rect().size.y:
 		queue_free()
+	position.y += fall_speed * delta
+	self.scale-= self.scale*abs(zoom_rate)*z_rate*0.0001
+
 
 func turn_upward():
 	direction = Vector2(1, turn_slope).normalized()
 
 func die():
 	is_dead = true
+	self.get_node("Area2D").set_collision_mask_value(2,true)
+	self.get_node("Area2D").set_collision_mask_value(1,false)
+	self.get_node("Area2D").set_collision_layer_value(2,true)
+	self.get_node("Area2D").set_collision_layer_value(1,false)
 	is_panicking = false
 
 # --- PANIC RUN ---

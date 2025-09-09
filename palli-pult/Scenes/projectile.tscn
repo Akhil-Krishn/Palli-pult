@@ -1,21 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://blsrel7hrrrgx"]
+[gd_scene load_steps=6 format=3 uid="uid://blsrel7hrrrgx"]
 
-[ext_resource type="Texture2D" uid="uid://cniq67v7opgva" path="res://icon.svg" id="1_f8cdk"]
 [ext_resource type="Script" uid="uid://klrhj7yd0s17" path="res://Scripts/projectile.gd" id="1_yr2qt"]
+[ext_resource type="Texture2D" uid="uid://cfiv7yc7xo43q" path="res://assets/catapult.PNG" id="2_yr2qt"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_at5ip"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4467"]
+atlas = ExtResource("2_yr2qt")
+region = Rect2(0, 1989, 600, 153)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1077"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4467")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tl4hk"]
+radius = 7.69231
+height = 23.0769
 
 [node name="Projectile" type="Area2D"]
 scale = Vector2(1.3, 1.3)
 script = ExtResource("1_yr2qt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("1_f8cdk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1.53846)
+scale = Vector2(0.105, 0.105)
+sprite_frames = SubResource("SpriteFrames_e1077")
+autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_at5ip")
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_tl4hk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
