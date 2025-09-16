@@ -117,6 +117,7 @@ scale = Vector2(1.66, 1.66)
 script = ExtResource("1_cvnsp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 scale = Vector2(0.17, 0.17)
 sprite_frames = SubResource("SpriteFrames_pu2lt")
 animation = &"shoot"

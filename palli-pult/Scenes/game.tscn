@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfqbhyskjayvj"]
+[gd_scene load_steps=25 format=3 uid="uid://cfqbhyskjayvj"]
 
 [ext_resource type="Script" uid="uid://crscaed02a1ha" path="res://Scripts/spawn.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dkjpswci5imc5" path="res://assets/slide1.PNG" id="6_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://bhqtbh31jgm8" path="res://Scenes/sambar.tscn" id="6_i6g32"]
 [ext_resource type="Texture2D" uid="uid://d0q6ofucd58b2" path="res://assets/unnamed.png" id="6_ldgsr"]
+[ext_resource type="Script" uid="uid://bgyv0wd40kh8u" path="res://Scripts/game_ui.gd" id="6_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://bist8rqxvpfh8" path="res://assets/slide2.PNG" id="7_ldgsr"]
 [ext_resource type="FontFile" uid="uid://biwdd6m8hnlwh" path="res://assets/PixelifySans-VariableFont_wght.ttf" id="9_rku1e"]
 [ext_resource type="AudioStream" uid="uid://bkj736p7l58ei" path="res://assets/BeepBox-Song.wav" id="11_o5yvi"]
@@ -38,11 +39,47 @@ outline_size = 10
 outline_color = Color(0.670296, 0.698532, 0.886749, 1)
 shadow_size = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_rfjv2"]
+font_size = 96
+font_color = Color(1, 1, 0.913725, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1phco"]
+font_size = 116
+font_color = Color(1, 1, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1phco"]
+bg_color = Color(0.0694637, 0.069744, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfjv2"]
+bg_color = Color(0.188088, 0.0767869, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nb51f"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="Theme" id="Theme_1phco"]
+default_font_size = 60
+Button/styles/hover = SubResource("StyleBoxFlat_1phco")
+Button/styles/normal = SubResource("StyleBoxFlat_rfjv2")
+Button/styles/pressed = SubResource("StyleBoxFlat_nb51f")
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_qxrlw")
 palli_scene = ExtResource("2_wowpa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 editor_draw_limits = true
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -85,12 +122,16 @@ color = Color(0, 0, 0, 1)
 [node name="Player" parent="." instance=ExtResource("3_wrm1d")]
 position = Vector2(3, 198)
 ProjectileScene = ExtResource("4_3dryh")
+t_projectile_speed = 25.0
+camera_zoom_rate = 0.6
 
 [node name="UI" type="Control" parent="."]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("6_rfjv2")
 
 [node name="PowerSlider" type="HSlider" parent="UI"]
 z_index = 20
@@ -105,7 +146,6 @@ theme_override_constants/grabber_offset = -30
 theme_override_icons/grabber_disabled = ExtResource("6_ldgsr")
 theme_override_styles/slider = SubResource("StyleBoxTexture_ldgsr")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_o5yvi")
-value = 50.0
 editable = false
 
 [node name="Score" type="Label" parent="UI"]
@@ -120,6 +160,46 @@ text = "Score"
 label_settings = SubResource("LabelSettings_wowpa")
 script = ExtResource("6_1l0tm")
 
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = -485.0
+offset_top = -324.0
+offset_right = 485.0
+offset_bottom = 332.0
+color = Color(0.0431373, 0.0431373, 0.0431373, 0.878431)
+
+[node name="Label" type="Label" parent="UI/ColorRect"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 225.0
+offset_right = 850.0
+offset_bottom = 482.0
+text = "CET ON STRIKE!!"
+label_settings = SubResource("LabelSettings_rfjv2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/ColorRect"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 47.0
+offset_right = 850.0
+offset_bottom = 304.0
+text = "Victory"
+label_settings = SubResource("LabelSettings_1phco")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Home" type="Button" parent="UI/ColorRect"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 452.0
+offset_right = 683.0
+offset_bottom = 588.0
+theme = SubResource("Theme_1phco")
+text = "Main Menu"
+
 [node name="Sambar" parent="." instance=ExtResource("6_i6g32")]
 position = Vector2(-306, -13)
 scale = Vector2(0.43, 0.43)
@@ -130,8 +210,12 @@ scale = Vector2(0.43, 0.43)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_o5yvi")
+volume_db = -0.525
 autoplay = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="won" from="UI" to="." method="_on_ui_won"]
+[connection signal="won" from="UI" to="Player" method="_on_ui_won"]
+[connection signal="pressed" from="UI/ColorRect/Home" to="UI" method="_on_home_pressed"]
 [connection signal="score_1" from="Sambar" to="UI/Score" method="_on_sambar_score_1"]
 [connection signal="score_1" from="Sambar2" to="UI/Score" method="_on_sambar_score_1"]

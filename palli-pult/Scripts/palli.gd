@@ -7,6 +7,7 @@ var zoom_rate:float = 1.0
 @export var blood_scn: PackedScene
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var death_sfx = $AudioStreamPlayer2D
 var speed: float = 180.0
 var direction: Vector2 = Vector2.RIGHT
 var is_dead: bool = false
@@ -73,6 +74,7 @@ func _fall_down(delta):
 	if self.scale.x < scale_max:
 		fade_out(self,0.5)
 		if not blood_sprayed:
+			death_sfx.play()
 			var blood = blood_scn.instantiate()
 			blood.position = self.global_position
 			self.get_parent().add_child(blood)
