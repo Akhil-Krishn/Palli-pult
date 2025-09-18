@@ -22,7 +22,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/postfx/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
