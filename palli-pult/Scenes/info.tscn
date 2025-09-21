@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7or7h8w33u6o"]
+[gd_scene load_steps=4 format=3 uid="uid://b7or7h8w33u6o"]
 
 [ext_resource type="Script" uid="uid://bynitsmxs3phk" path="res://Scripts/panel.gd" id="1_ugdrp"]
 [ext_resource type="Script" uid="uid://h4i8heepowiw" path="res://Scripts/button.gd" id="2_qjrxf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ugdrp"]
+font_size = 26
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -17,11 +20,20 @@ script = ExtResource("1_ugdrp")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 67.0
-offset_top = 48.0
-offset_right = 942.0
-offset_bottom = 448.0
-text = "how to play info here"
+offset_left = 34.0
+offset_top = 37.0
+offset_right = 869.0
+offset_bottom = 437.0
+text = "Shoot down Pallis into the sambar pot or blender to get points!
+
+If you get Ten points within the time limit you win!! 
+
+Be Careful when shooting. 
+If you overshoot, the palli can hit the wall and die!
+If you undershoot, the palli can fall may not fall in the pot!
+
+Have fun Playing!"
+label_settings = SubResource("LabelSettings_ugdrp")
 
 [node name="CloseButton" type="Button" parent="Panel"]
 layout_mode = 0

@@ -18,6 +18,7 @@ var time_passed: float = 0.0
 var noise := FastNoiseLite.new()
 
 var won = false
+var lost = false
 
 func _ready():
 	randomize()
@@ -31,7 +32,7 @@ func _process(delta):
 	time_passed += delta
 
 func _on_spawn_timer_timeout():
-	if not won:
+	if not won and not lost:
 		var n = noise.get_noise_1d(time_passed * 0.2)  # -1 to 1
 		var spawn_chance = (n + 1.0) / 2.0             # 0..1
 
@@ -65,3 +66,6 @@ func set_random_spawn_time():
 
 func _on_ui_won() -> void:
 	won = true
+
+func _on_game_timer_lost() -> void:
+	lost = true

@@ -34,4 +34,4 @@ shape = SubResource("CapsuleShape2D_54kwy")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_saeqo")
-volume_db = 13.0
+volume_db = 16.0

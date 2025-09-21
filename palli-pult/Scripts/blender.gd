@@ -3,13 +3,13 @@ extends Area2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sfx: AudioStreamPlayer2D = $AudioStreamPlayer2D   # make sure node exists
 
-signal score_1
+signal score_2
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("lizard"):
 		area.get_parent().queue_free()
 		await play_animation()
-		score_1.emit()
+		score_2.emit()
 
 func play_animation() -> void:
 	# Play sound effect once at the start

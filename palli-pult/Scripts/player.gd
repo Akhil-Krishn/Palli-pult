@@ -20,6 +20,7 @@ var slider_increase: bool = true
 var is_aiming = false
 
 var win = false
+var lost = false
 var reset_camera = false
 
 func _ready():
@@ -28,7 +29,7 @@ func _ready():
 	bottom_speed_projectile = b_projectile_speed * projectile_speed
 
 func _unhandled_input(event):
-	if not win:
+	if not win and not lost:
 		if event.is_action_pressed("shoot"):
 			is_aiming = true
 			anim.play("aim")
@@ -62,7 +63,7 @@ func _physics_process(delta):
 		else:
 			reset_camera = false
 	
-	if not win:
+	if not win and not lost:
 		if is_aiming:
 			if slider_increase:
 				power_slider.value += 1
@@ -76,14 +77,13 @@ func _physics_process(delta):
 				slider_increase = false
 			if power_slider.value <= power_slider.min_value:
 				slider_increase = true
-
-		if get_global_mouse_position().x > mouse_limit_right:
-			get_global_mouse_position().x = mouse_limit_right
-		
-		if get_global_mouse_position().x < mouse_limit_left:
-			get_global_mouse_position().x = mouse_limit_left
 			 
 		self.global_position.x = get_global_mouse_position().x
+		
+		if self.global_position.x > mouse_limit_right:
+			self.global_position.x = mouse_limit_right
+		if self.global_position.x < mouse_limit_left:
+			self.global_position.x = mouse_limit_left
 		
 
 func _on_lizard_hit(lizard):
@@ -100,6 +100,8 @@ func _on_lizard_hit(lizard):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	anim.play("default")
 
-
 func _on_ui_won() -> void:
 	win = true
+
+func _on_game_timer_lost() -> void:
+	lost = true
