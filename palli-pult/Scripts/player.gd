@@ -6,6 +6,9 @@ extends Node2D
 @export var b_projectile_speed: float = 5.0
 @export var camera_zoom_rate:float = 0.0
 
+@export var mouse_limit_right:float = 200
+@export var mouse_limit_left:float = -200
+
 var top_speed_projectile
 var bottom_speed_projectile
 
@@ -74,7 +77,14 @@ func _physics_process(delta):
 			if power_slider.value <= power_slider.min_value:
 				slider_increase = true
 
+		if get_global_mouse_position().x > mouse_limit_right:
+			get_global_mouse_position().x = mouse_limit_right
+		
+		if get_global_mouse_position().x < mouse_limit_left:
+			get_global_mouse_position().x = mouse_limit_left
+			 
 		self.global_position.x = get_global_mouse_position().x
+		
 
 func _on_lizard_hit(lizard):
 	lizard.die()

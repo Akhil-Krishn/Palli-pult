@@ -124,6 +124,8 @@ position = Vector2(3, 198)
 ProjectileScene = ExtResource("4_3dryh")
 t_projectile_speed = 25.0
 camera_zoom_rate = 0.6
+mouse_limit_right = 10.0
+mouse_limit_left = 10.0
 
 [node name="UI" type="Control" parent="."]
 z_index = 2
