@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqhflwcexwsjb"]
+
+[ext_resource type="Script" uid="uid://c7y7t7pkojl5q" path="res://Scripts/blender.gd" id="1_7on6j"]
+[ext_resource type="Texture2D" uid="uid://t03ny2x0l1lm" path="res://assets/blender.PNG" id="2_6jfb0"]
+[ext_resource type="AudioStream" uid="uid://bl3aqlqu7o10d" path="res://assets/u_BD0B5DOH.mp3" id="3_gv6tc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6tlmc"]
+radius = 109.0
+height = 454.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_7on6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 153)
+shape = SubResource("CapsuleShape2D_6tlmc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6jfb0")
+hframes = 8
+vframes = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gv6tc")
+volume_db = 7.333
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
