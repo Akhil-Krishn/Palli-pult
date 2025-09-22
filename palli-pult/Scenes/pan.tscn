@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvnqefiv62k4y"]
+
+[ext_resource type="Script" uid="uid://dv1k1m7l01j8k" path="res://Scripts/pan.gd" id="1_ibiup"]
+[ext_resource type="Texture2D" uid="uid://cdtk6ei02rq2g" path="res://assets/stove.PNG" id="2_ibiup"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lj2qk"]
+radius = 94.0
+height = 338.0
+
+[node name="pan" type="Area2D"]
+script = ExtResource("1_ibiup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -86)
+shape = SubResource("CapsuleShape2D_lj2qk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ibiup")
+hframes = 8
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

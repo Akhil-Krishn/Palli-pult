@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://vjyfjb5tbxk"]
+
+[ext_resource type="Script" uid="uid://btwhi01qeqfy7" path="res://Scripts/knife.gd" id="1_k4pir"]
+[ext_resource type="Texture2D" uid="uid://co6c0hls0566u" path="res://assets/knife.PNG" id="2_pgkuq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4pir"]
+radius = 224.0
+height = 560.0
+
+[node name="knife" type="Area2D"]
+script = ExtResource("1_k4pir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 84)
+shape = SubResource("CapsuleShape2D_k4pir")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pgkuq")
+hframes = 6
+frame = 5
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

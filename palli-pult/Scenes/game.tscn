@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cfqbhyskjayvj"]
+[gd_scene load_steps=30 format=3 uid="uid://cfqbhyskjayvj"]
 
 [ext_resource type="Script" uid="uid://crscaed02a1ha" path="res://Scripts/spawn.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cjqy7kyka6nec" path="res://assets/bg.png" id="2_qxrlw"]
@@ -15,6 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://bkj736p7l58ei" path="res://assets/BeepBox-Song.wav" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://c0wuw4eqp561q" path="res://Scripts/game_timer.gd" id="12_nb51f"]
 [ext_resource type="PackedScene" uid="uid://cqhflwcexwsjb" path="res://Scenes/blender.tscn" id="14_1phco"]
+[ext_resource type="Script" uid="uid://bclg7bhayydu3" path="res://Scenes/audio_stream_player_2d.gd" id="15_85qyi"]
+[ext_resource type="PackedScene" uid="uid://dvnqefiv62k4y" path="res://Scenes/pan.tscn" id="16_nnt18"]
+[ext_resource type="PackedScene" uid="uid://vjyfjb5tbxk" path="res://Scenes/knife.tscn" id="17_ewbju"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
@@ -194,6 +197,7 @@ offset_left = 114.0
 offset_top = 225.0
 offset_right = 850.0
 offset_bottom = 482.0
+theme_override_fonts/font = ExtResource("9_rku1e")
 text = "CET ON STRIKE!!"
 label_settings = SubResource("LabelSettings_rfjv2")
 horizontal_alignment = 1
@@ -205,6 +209,7 @@ offset_left = 114.0
 offset_top = 47.0
 offset_right = 850.0
 offset_bottom = 304.0
+theme_override_fonts/font = ExtResource("9_rku1e")
 text = "Victory"
 label_settings = SubResource("LabelSettings_1phco")
 horizontal_alignment = 1
@@ -234,6 +239,7 @@ offset_left = 114.0
 offset_top = 225.0
 offset_right = 850.0
 offset_bottom = 482.0
+theme_override_fonts/font = ExtResource("9_rku1e")
 text = "Biju Survives..."
 label_settings = SubResource("LabelSettings_rfjv2")
 horizontal_alignment = 1
@@ -245,6 +251,7 @@ offset_left = 114.0
 offset_top = 47.0
 offset_right = 850.0
 offset_bottom = 304.0
+theme_override_fonts/font = ExtResource("9_rku1e")
 text = "Game Over!"
 label_settings = SubResource("LabelSettings_1phco")
 horizontal_alignment = 1
@@ -257,6 +264,7 @@ offset_top = 452.0
 offset_right = 476.0
 offset_bottom = 588.0
 theme = SubResource("Theme_1phco")
+theme_override_fonts/font = ExtResource("9_rku1e")
 text = "Main Menu"
 
 [node name="Rety" type="Button" parent="UI/Loose"]
@@ -266,6 +274,7 @@ offset_top = 452.0
 offset_right = 919.0
 offset_bottom = 588.0
 theme = SubResource("Theme_1phco")
+theme_override_fonts/font = ExtResource("9_rku1e")
 text = "Try Again"
 
 [node name="Sambar" parent="." instance=ExtResource("6_i6g32")]
@@ -273,17 +282,31 @@ position = Vector2(-306, -13)
 scale = Vector2(0.43, 0.43)
 
 [node name="Sambar2" parent="." instance=ExtResource("6_i6g32")]
-position = Vector2(-63.9999, -13)
-scale = Vector2(0.43, 0.43)
+position = Vector2(187, 39)
+scale = Vector2(0.48, 0.48)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_o5yvi")
 volume_db = -0.525
 autoplay = true
+script = ExtResource("15_85qyi")
 
 [node name="blender" parent="." instance=ExtResource("14_1phco")]
-position = Vector2(202, -62)
-scale = Vector2(0.51, 0.51)
+position = Vector2(14, -116)
+scale = Vector2(0.46, 0.46)
+collision_layer = 2
+collision_mask = 2
+
+[node name="pan" parent="." instance=ExtResource("16_nnt18")]
+position = Vector2(304, 193)
+rotation = 0.0872665
+scale = Vector2(0.52, 0.52)
+collision_layer = 2
+collision_mask = 2
+
+[node name="knife" parent="." instance=ExtResource("17_ewbju")]
+position = Vector2(-149, -65)
+scale = Vector2(0.26, 0.26)
 collision_layer = 2
 collision_mask = 2
 

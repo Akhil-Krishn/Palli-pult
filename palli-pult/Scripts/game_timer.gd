@@ -2,7 +2,7 @@ extends Label
 
 signal lost
 
-@export var time_left: int = 15
+@export var time_left: int = 30
 
 func _ready() -> void:
 	self.text = "Time: " +str(time_left)
