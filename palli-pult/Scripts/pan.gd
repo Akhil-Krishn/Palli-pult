@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var sound = $AudioStreamPlayer2D
 
 signal score_2
 
@@ -14,7 +15,9 @@ func _on_area_entered(area: Area2D) -> void:
 		await play_animation()
 		score_2.emit()
 
+
 func play_animation() -> void:
+	sound.play()
 	# Make sure Sprite2D has hframes/vframes set correctly in Inspector!
 	var frames = [
 		0,1,2,3,4,3,5,6,7

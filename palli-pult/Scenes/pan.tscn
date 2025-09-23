@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvnqefiv62k4y"]
+[gd_scene load_steps=5 format=3 uid="uid://dvnqefiv62k4y"]
 
 [ext_resource type="Script" uid="uid://dv1k1m7l01j8k" path="res://Scripts/pan.gd" id="1_ibiup"]
 [ext_resource type="Texture2D" uid="uid://cdtk6ei02rq2g" path="res://assets/stove.PNG" id="2_ibiup"]
+[ext_resource type="AudioStream" uid="uid://78wfcfttuvo0" path="res://assets/fire-onset-1-386711-[AudioTrimmer.com].mp3" id="3_tu7sa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lj2qk"]
 radius = 94.0
@@ -17,5 +18,9 @@ shape = SubResource("CapsuleShape2D_lj2qk")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ibiup")
 hframes = 8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tu7sa")
+volume_db = -0.25
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

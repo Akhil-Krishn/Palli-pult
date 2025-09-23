@@ -5,6 +5,8 @@ extends Area2D
 
 signal score_2
 
+@onready var knife_sound = $AudioStreamPlayer2D
+
 func _ready() -> void:
 	# Set default/normal state at start
 	sprite.frame = 5
@@ -17,6 +19,7 @@ func _on_area_entered(area: Area2D) -> void:
 		collision.queue_free()
 
 func play_animation() -> void:
+	knife_sound.play()
 	# Make sure Sprite2D has hframes/vframes set correctly in Inspector!
 	var frames = [
 		0,1,2,3,4
