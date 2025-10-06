@@ -8,12 +8,12 @@
 [ext_resource type="Script" uid="uid://dbfpexsb8tic8" path="res://Scripts/menupalli.gd" id="4_8ph6h"]
 [ext_resource type="Texture2D" uid="uid://f7qkjutwhl5f" path="res://assets/howtoplay.png" id="5_rfqti"]
 [ext_resource type="Script" uid="uid://sq52nq0vro3w" path="res://Scripts/title.gd" id="6_5ti5v"]
-[ext_resource type="Texture2D" uid="uid://brjqje3ubdgkp" path="res://assets/options.png" id="6_g8i7c"]
 [ext_resource type="Texture2D" uid="uid://dgbguh3hb38mw" path="res://assets/particle.png" id="7_23t3j"]
 [ext_resource type="Script" uid="uid://bvvh1y3dyka0f" path="res://Scripts/play.gd" id="10_g8i7c"]
 [ext_resource type="Script" uid="uid://jiiy0l5oyi2s" path="res://Scripts/how_to.gd" id="12_23t3j"]
 [ext_resource type="AudioStream" uid="uid://cd5j8tf7thvtp" path="res://assets/BeepBox-Song (2).wav" id="14_5ti5v"]
 [ext_resource type="Script" uid="uid://dp43m4t01cx4p" path="res://Scripts/particle.gd" id="14_dldpb"]
+[ext_resource type="Script" uid="uid://cfbk2iiw6vti7" path="res://Scripts/menusong.gd" id="15_5ti5v"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -59,11 +59,11 @@ script = ExtResource("14_dldpb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 218.0
-offset_right = 588.0
-offset_bottom = 741.0
-scale = Vector2(0.78, 0.78)
+offset_left = 65.0
+offset_top = 260.0
+offset_right = 567.0
+offset_bottom = 783.0
+scale = Vector2(0.93, 0.93)
 
 [node name="play" type="Button" parent="VBoxContainer"]
 texture_filter = 1
@@ -80,15 +80,10 @@ icon = ExtResource("5_rfqti")
 flat = true
 script = ExtResource("12_23t3j")
 
-[node name="options" type="Button" parent="VBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-icon = ExtResource("6_g8i7c")
-flat = true
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_5ti5v")
 autoplay = true
+script = ExtResource("15_5ti5v")
 
 [connection signal="pressed" from="VBoxContainer/play" to="VBoxContainer/play" method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/how to" to="VBoxContainer/how to" method="_on_pressed"]
